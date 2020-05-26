@@ -15,5 +15,5 @@ String normalizeDate(DateTime date) {
   String dateMonth = twoDigits(date.month);
   String dateYear = date.year.toString();
 
-  return "$timeHour:$timeMinute:$timeSecond $dateDay.$dateMonth.$dateYear";
+  return "$dateDay.$dateMonth.$dateYear $timeHour:$timeMinute:$timeSecond";
 }

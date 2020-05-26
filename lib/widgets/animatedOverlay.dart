@@ -51,14 +51,6 @@ class OverlayWidgetState extends State<OverlayWidget>
     controller.forward();
   }
 
-  @override
-  void didUpdateWidget(OverlayWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    controller.reset();
-    controller.forward();
-  }
-
   Future<void> startDisposal() async {
     await controller.reverse();
     widget.parentOverlayReference.remove();
@@ -138,6 +130,7 @@ class OverlayWidgetState extends State<OverlayWidget>
                             children: <Widget>[
                               new FlatButton(
                                 child: new Text("Close"),
+                                textColor: Colors.tealAccent[700],
                                 onPressed: () {
                                   startDisposal();
                                 },

@@ -74,7 +74,7 @@ class ChatScreenState extends State<ChatScreen> {
                         new Divider(height: 10.0),
                         new ListTile(
                           leading: new CircleAvatar(
-                            backgroundColor: Colors.amber,
+                            backgroundColor: const Color(0xFFF4C095),
                             child: new Text(
                               messages[i].name[0],
                               style: new TextStyle(color: Colors.black),
@@ -121,7 +121,7 @@ class ChatScreenState extends State<ChatScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          new Text(
+                                          new SelectableText(
                                             messages[i].message,
                                             textAlign: TextAlign.left,
                                             style:
@@ -133,6 +133,7 @@ class ChatScreenState extends State<ChatScreen> {
                                     actions: <Widget>[
                                       new FlatButton(
                                         child: new Text("Copy"),
+                                        textColor: Colors.tealAccent[700],
                                         onPressed: () async {
                                           await ClipboardManager
                                               .copyToClipBoard(
