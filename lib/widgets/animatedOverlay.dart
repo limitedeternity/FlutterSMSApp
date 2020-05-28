@@ -64,81 +64,86 @@ class OverlayWidgetState extends State<OverlayWidget>
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
-      color: Colors.black.withOpacity(opacityAnimation.value),
-      child: new ScaleTransition(
-        scale: scaleAnimation,
-        child: new Padding(
-          padding: MediaQuery.of(context).viewInsets +
-              const EdgeInsets.symmetric(
-                horizontal: 40.0,
-                vertical: 24.0,
-              ),
-          child: new MediaQuery.removeViewInsets(
-            removeLeft: true,
-            removeTop: true,
-            removeRight: true,
-            removeBottom: true,
-            context: context,
-            child: new Center(
-              child: new Container(
-                decoration: new ShapeDecoration(
-                  color: Colors.white,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(15.0),
-                  ),
+    return new Stack(
+      children: <Widget>[
+        new GestureDetector(
+          onTap: startDisposal,
+          child: new Container(
+            color: Colors.black.withOpacity(opacityAnimation.value),
+          ),
+        ),
+        new ScaleTransition(
+          scale: scaleAnimation,
+          child: new Padding(
+            padding: MediaQuery.of(context).viewInsets +
+                const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 24.0,
                 ),
-                child: new ConstrainedBox(
-                  constraints: const BoxConstraints(minWidth: 280.0),
-                  child: new IntrinsicWidth(
-                    child: new Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        new Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                            24.0,
-                            24.0,
-                            24.0,
-                            0.0,
-                          ),
-                          child: new DefaultTextStyle(
-                            style: Theme.of(context).textTheme.title,
-                            child: new Semantics(
-                              child: widget.title,
-                              namesRoute: true,
-                              container: true,
-                            ),
-                          ),
-                        ),
-                        new Flexible(
-                          child: new Padding(
+            child: new MediaQuery.removeViewInsets(
+              removeLeft: true,
+              removeTop: true,
+              removeRight: true,
+              removeBottom: true,
+              context: context,
+              child: new Center(
+                child: new Container(
+                  decoration: new ShapeDecoration(
+                    color: Colors.white,
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(15.0),
+                    ),
+                  ),
+                  child: new ConstrainedBox(
+                    constraints: const BoxConstraints(minWidth: 280.0),
+                    child: new IntrinsicWidth(
+                      child: new Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          new Padding(
                             padding: const EdgeInsets.fromLTRB(
                               24.0,
-                              12.0,
+                              24.0,
                               24.0,
                               0.0,
                             ),
                             child: new DefaultTextStyle(
-                              style: Theme.of(context).textTheme.subhead,
-                              child: widget.content,
+                              style: Theme.of(context).textTheme.title,
+                              child: new Semantics(
+                                child: widget.title,
+                                namesRoute: true,
+                                container: true,
+                              ),
                             ),
                           ),
-                        ),
-                        new ButtonTheme.bar(
-                          child: new ButtonBar(
-                            children: <Widget>[
-                              new FlatButton(
-                                child: new Text("Close"),
-                                textColor: Colors.tealAccent[700],
-                                onPressed: () {
-                                  startDisposal();
-                                },
+                          new Flexible(
+                            child: new Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                24.0,
+                                12.0,
+                                24.0,
+                                0.0,
                               ),
-                            ]..insertAll(0, widget.actions),
+                              child: new DefaultTextStyle(
+                                style: Theme.of(context).textTheme.subhead,
+                                child: widget.content,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                          new ButtonTheme.bar(
+                            child: new ButtonBar(
+                              children: <Widget>[
+                                new FlatButton(
+                                  child: new Text("Close"),
+                                  textColor: Colors.tealAccent[700],
+                                  onPressed: startDisposal,
+                                ),
+                              ]..insertAll(0, widget.actions),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -146,7 +151,7 @@ class OverlayWidgetState extends State<OverlayWidget>
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

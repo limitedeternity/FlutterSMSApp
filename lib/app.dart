@@ -14,9 +14,9 @@ class ApplicationState extends State<Application> {
   void initState() {
     super.initState();
 
-    queryPermissions().then((bool val) {
+    queryPermissions().then((void _) {
       setState(() {
-        permissionsGranted = val;
+        permissionsGranted = true;
       });
     });
   }

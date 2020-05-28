@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:permission/permission.dart';
 
-Future<bool> queryPermissions() async {
+Future<void> queryPermissions() async {
   List<PermissionName> perms = [PermissionName.Contacts, PermissionName.SMS];
 
   while (true) {
@@ -11,7 +11,7 @@ Future<bool> queryPermissions() async {
         (Permissions perm) => perm.permissionStatus == PermissionStatus.allow);
 
     if (allGranted) {
-      return allGranted;
+      break;
     }
 
     await Permission.requestPermissions(perms);
