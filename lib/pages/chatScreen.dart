@@ -46,7 +46,7 @@ class ChatScreenState extends State<ChatScreen> {
           messages = res;
         });
       },
-      child: messages.length > 0
+      child: messages.isNotEmpty
           ? new ListView.builder(
               itemCount: messages.length,
               itemBuilder: (context, i) => new Dismissible(
